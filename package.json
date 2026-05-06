@@ -1,0 +1,16 @@
+{
+  "name": "exer-consumo",
+  "version": "1.0.0",
+  "description": "Exercício de consumo de APIs externas (ViaCEP + wttr.in) com Express",
+  "main": "ViaCEP/server.js",
+  "scripts": {
+    "start": "node ViaCEP/server.js"
+  },
+  "keywords": ["express", "viacep", "api", "wttr"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "node-fetch": "^2.7.0"
+  }
+}

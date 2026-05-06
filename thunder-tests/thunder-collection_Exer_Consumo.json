@@ -1,0 +1,128 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Exer_Consumo",
+  "dateExported": "2026-05-06T12:00:00.000Z",
+  "version": "1.2",
+  "folders": [
+    {
+      "_id": "folder-cep",
+      "name": "CEP",
+      "containerId": "",
+      "created": "2026-05-06T12:00:00.000Z",
+      "sortNum": 10000
+    },
+    {
+      "_id": "folder-clima",
+      "name": "Clima",
+      "containerId": "",
+      "created": "2026-05-06T12:00:00.000Z",
+      "sortNum": 20000
+    }
+  ],
+  "requests": [
+    {
+      "_id": "req-cep-200",
+      "colId": "col-exer-consumo",
+      "containerId": "folder-cep",
+      "name": "CEP - Válido (200)",
+      "url": "http://localhost:3000/cep/01001000",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-05-06T12:00:00.000Z",
+      "modified": "2026-05-06T12:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" },
+        { "type": "json-query", "custom": "json.cidade", "action": "equal", "value": "São Paulo" },
+        { "type": "json-query", "custom": "json.estado", "action": "equal", "value": "SP" }
+      ]
+    },
+    {
+      "_id": "req-cep-404",
+      "colId": "col-exer-consumo",
+      "containerId": "folder-cep",
+      "name": "CEP - Inexistente (404)",
+      "url": "http://localhost:3000/cep/00000000",
+      "method": "GET",
+      "sortNum": 20000,
+      "created": "2026-05-06T12:00:00.000Z",
+      "modified": "2026-05-06T12:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "404" },
+        { "type": "json-query", "custom": "json.erro", "action": "equal", "value": "CEP não encontrado" }
+      ]
+    },
+    {
+      "_id": "req-cep-400",
+      "colId": "col-exer-consumo",
+      "containerId": "folder-cep",
+      "name": "CEP - Mal formatado (400)",
+      "url": "http://localhost:3000/cep/abc",
+      "method": "GET",
+      "sortNum": 30000,
+      "created": "2026-05-06T12:00:00.000Z",
+      "modified": "2026-05-06T12:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "400" },
+        { "type": "json-query", "custom": "json.erro", "action": "equal", "value": "CEP mal formatado" }
+      ]
+    },
+    {
+      "_id": "req-clima-200",
+      "colId": "col-exer-consumo",
+      "containerId": "folder-clima",
+      "name": "Clima - Cidade válida (200)",
+      "url": "http://localhost:3000/clima/Curitiba",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-05-06T12:00:00.000Z",
+      "modified": "2026-05-06T12:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" },
+        { "type": "json-query", "custom": "json.cidade", "action": "equal", "value": "Curitiba" },
+        { "type": "json-query", "custom": "json.temperatura", "action": "contains", "value": "°C" }
+      ]
+    },
+    {
+      "_id": "req-clima-400",
+      "colId": "col-exer-consumo",
+      "containerId": "folder-clima",
+      "name": "Clima - Cidade muito curta (400)",
+      "url": "http://localhost:3000/clima/x",
+      "method": "GET",
+      "sortNum": 20000,
+      "created": "2026-05-06T12:00:00.000Z",
+      "modified": "2026-05-06T12:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "400" },
+        { "type": "json-query", "custom": "json.erro", "action": "equal", "value": "Cidade inválida" }
+      ]
+    },
+    {
+      "_id": "req-clima-404",
+      "colId": "col-exer-consumo",
+      "containerId": "folder-clima",
+      "name": "Clima - Cidade inexistente (404)",
+      "url": "http://localhost:3000/clima/qwertyzzznaoexiste",
+      "method": "GET",
+      "sortNum": 30000,
+      "created": "2026-05-06T12:00:00.000Z",
+      "modified": "2026-05-06T12:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "404" }
+      ]
+    }
+  ],
+  "ref": "exer-consumo"
+}
